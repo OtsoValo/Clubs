@@ -31,26 +31,57 @@ angular.module('PortalApp')
         else {
             $scope.portalHelpers.invokeServerFunction('insertClub', { name: $scope.insertClub.name, description: $scope.insertClub.description, calendarLink: $scope.insertClub.calendarLink }).then(function (result) {
                 $scope.createdClubData = result;
+    // DATABASE EXAMPLE
+
+    $scope.getDbData = function () {
+        $scope.portalHelpers.invokeServerFunction('getData').then(function (result) {
+            $scope.dbData = result;
+        });
+    }
+
+        $scope.getsearchDbData = function () {
+        $scope.portalHelpers.invokeServerFunction('getSearchData').then(function (result) {
+            $scope.searchdbData = result;
+        });
+    }
+    
+    // Try to get test data from the database
+    $scope.getDbData();
+  
+    // Try to get search data from the database
+    $scope.getsearchDbData();
+  
+      // Search for a club name
+    $scope.searchData = function () {
+        if ($scope.insertValue.value.length > 50)
+            alert('value should be less than 50 characters');
+        else {
+            $scope.portalHelpers.invokeServerFunction('search', { value: $scope.insertValue.value }).then(function (result) {
+                $scope.searchdbData = result;
             });
         }
     };
-
+  
     // DETAILS VIEW EXAMPLE
-    $scope.showView2 = function () {
-        $scope.portalHelpers.showView('view2.html', 2);
-    }
+    $scope.showView = function (item) {
+        $scope.item = item;
+        $scope.portalHelpers.showView('details.html', 2);
+     }
 
-    $scope.showView3 = function () {
-        $scope.portalHelpers.showView('view3.html', 3);
+    $scope.showSearchView = function () {
+       $scope.portalHelpers.showView('searchView.html', 4);
+     }
+
+    $scope.showSignUp = function (name) {
+        $scope.name = name;
+        $scope.portalHelpers.showView('signup.html', 2);
     }
 
      $scope.showCreateClubView = function (name) {
         $scope.name = name;
         $scope.portalHelpers.showView('createClub.html', 2);
     }
-     
-    // PORTAL DATA SOURCE EXAMPLE
-
+    
     // Get data for the widget
     $http.get('/ImportantLinks/JSONSource').success(function (data) {
         // Make data available in the scope
