@@ -1,4 +1,4 @@
-angular.module('PortalApp')
+angular.module('Clubs')
 
 .controller('widgetCtrl', ['$scope', '$http', '$q', function ($scope, $http, $q) {
 
@@ -6,7 +6,7 @@ angular.module('PortalApp')
 
     // Widget Configuration
     $scope.portalHelpers.config = {
-        "title": "Test Project",
+        "title": "Clubs Widget",
         "icon": "icon-bell"
     };
 
