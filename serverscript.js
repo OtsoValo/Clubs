@@ -28,9 +28,10 @@ function search() {
     if (args.Get("value").length > 50)
         return '{"result":"error"}';
     else {
-        //return db.execute('SELECT * FROM CLUBS WHERE NAME LIKE \'%' + args.Get("value") + '%\'');
       var query =  'SELECT * FROM CLUBS WHERE NAME LIKE \'%' + args.Get("value") + '%\'';
-      return db.Execute(query);
+      var result = db.Execute(query);
+      console.log(result);
+      return result;
     }
 }
 
