@@ -47,7 +47,13 @@ angular.module('PortalApp')
             });
         }
     };
-
+  
+  	$scope.insertClubData = function () {
+            		        $scope.portalHelpers.invokeServerFunction('insertClub', { value: $scope.insertValue.value }).then(function (result) {
+                $scope.dbData = result;
+            });
+    };
+  
     // DETAILS VIEW EXAMPLE
     $scope.showView2 = function () {
         $scope.portalHelpers.showView('view2.html', 2);
