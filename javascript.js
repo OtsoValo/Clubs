@@ -23,15 +23,13 @@ angular.module('PortalApp')
             $scope.createdClubData = result;
         });
     }
-
-  	// Insert a new Club into the database
-    $scope.insertClubData = function () {
-      //	console.log($scope.insertClub.name);
+	
+  		// Insert a new Club into the database
+    	$scope.insertClubData = function () {
         if ($scope.insertClub.name.length > 50)
             alert('value should be less than 50 characters');
         else {
             $scope.portalHelpers.invokeServerFunction('insertClub', { name: $scope.insertClub.name, description: $scope.insertClub.description, calendarLink: $scope.insertClub.calendarLink }).then(function (result) {
-              	console.log("result" + result);
                 $scope.createdClubData = result;
             });
         }
