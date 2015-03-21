@@ -59,6 +59,7 @@
    </div>
   
   <div widget-item icon-left="icon-angle-left" ng-click="showSearchView()" button></div>
+  </script>
 
 <script type="text/ng-template" id="signup.html">
     <div widget-section-header>{{name}}</div>
@@ -66,4 +67,37 @@
         <div widget-text>Do you want to sign up?</div>
       <button class="btn btn-primary" type="submit" style="margin-top: -1px;">Sign Up! </button>
     </div>
+</script>
+  
+  <div widget-item icon-left="icon-angle-left" ng-click="showCreateClubView()" button></div>
+  
+<script type="text/ng-template" id="createClub.html">
+    <!-- Creating a new Club -->
+
+    <div widget-section-header>Create a new Club.</div>
+       <div widget-item>
+           <form name="createClubForm" class="form-inline" ng-submit="insertClubData()" >
+               <div class="input-group" style="width: 100%;">
+                    <input type="text" class="form-control" ng-model="insertClub.name" required placeholder="Please enter the name of your club" />
+               </div>
+			   <div class="input-group" style="width: 100%;">
+                    <input type="text" class="form-control" ng-model="insertClub.description" required placeholder="Please enter the description of your club" />  
+               </div>
+               <div class="input-group" style="width: 100%;">
+                    <input type="url" name="calLink" class="form-control" ng-model="insertClub.calendarLink" required placeholder="Please enter the calendar link for your club" />
+               </div>
+             <br></br>
+                 <span class="input-group-btn" style="">
+                        <button class="btn btn-primary" type="submit" style="margin-top: -1px;">Submit</button>
+                 </span> 
+            </form>
+      </div>
+        <!--/div-->
+
+        <div widget-item ng-repeat="item in createdClubData">
+          	<div widget-text>Suc</div>
+            <div widget-text>Name: {{item.NAME}}</div>
+            <div widget-text>Description: {{item.DESCRIPTION}}</div>
+            <div widget-text>Calendar Link: {{item.CAL_LINK}}</div>
+        </div>
 </script>

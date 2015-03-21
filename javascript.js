@@ -9,9 +9,8 @@ angular.module('PortalApp')
         "title": "Clubs Widget",
         "icon": "icon-bell"
     };
-
-    // Initialize input variable
-    $scope.insertValue = { value: "" };
+  
+  	$scope.insertClub = { name: "", description: "", calendarLink: "" };
 
     // Show loading message in the first column
     $scope.portalHelpers.showView('loading.html', 1);
@@ -19,6 +18,19 @@ angular.module('PortalApp')
     // Show loading animation
     $scope.portalHelpers.toggleLoading(true);
 
+    $scope.getNewClubData = function () {
+        $scope.portalHelpers.invokeServerFunction('getCreatedClubData').then(function (result) {
+            $scope.createdClubData = result;
+        });
+    }
+	
+  		// Insert a new Club into the database
+    	$scope.insertClubData = function () {
+        if ($scope.insertClub.name.length > 50)
+            alert('value should be less than 50 characters');
+        else {
+            $scope.portalHelpers.invokeServerFunction('insertClub', { name: $scope.insertClub.name, description: $scope.insertClub.description, calendarLink: $scope.insertClub.calendarLink }).then(function (result) {
+                $scope.createdClubData = result;
     // DATABASE EXAMPLE
 
     $scope.getDbData = function () {
@@ -38,13 +50,6 @@ angular.module('PortalApp')
   
     // Try to get search data from the database
     $scope.getsearchDbData();
-
-    // Create table
-    $scope.createTable = function () {
-        $scope.portalHelpers.invokeServerFunction('createTable').then(function (result) {
-            $scope.getDbData();
-        });
-    }
   
       // Search for a club name
     $scope.searchData = function () {
@@ -53,8 +58,6 @@ angular.module('PortalApp')
         else {
             $scope.portalHelpers.invokeServerFunction('search', { value: $scope.insertValue.value }).then(function (result) {
                 $scope.searchdbData = result;
-              console.log("result is");
-              console.log(result);
             });
         }
     };
@@ -73,9 +76,12 @@ angular.module('PortalApp')
         $scope.name = name;
         $scope.portalHelpers.showView('signup.html', 2);
     }
-    
-    // PORTAL DATA SOURCE EXAMPLE
 
+     $scope.showCreateClubView = function (name) {
+        $scope.name = name;
+        $scope.portalHelpers.showView('createClub.html', 2);
+    }
+    
     // Get data for the widget
     $http.get('/ImportantLinks/JSONSource').success(function (data) {
         // Make data available in the scope
