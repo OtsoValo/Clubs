@@ -2,7 +2,7 @@
 
 // Retreive data from the database
 function getData() {
-    var queryResult = db.Execute('SELECT * FROM sampleTable');
+    var queryResult = db.Execute('SELECT * FROM CLUBS');
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"error":"Table does not exist"}';
@@ -33,6 +33,25 @@ function insert() {
     else {
         db.Execute('INSERT INTO sampleTable VALUES(@currentUser,@value)');
         return getData();
+    }
+}
+
+function getCreatedClubData() {
+    var queryResult = db.Execute('SELECT * FROM CLUBS WHERE NAME=@name');
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"error":"Table does not exist"}';
+    }
+    return queryResult;
+}
+
+// Insert into the database
+function insertClub() {
+    if (args.Get("name").length > 50)
+        return '{"result":"error"}';
+    else {
+        db.Execute('INSERT INTO CLUBS (NAME, DESCRIPTION, CAL_LINK) VALUES (@name, @description, @calendarLink)');
+        return getCreatedClubData();
     }
 }
 
