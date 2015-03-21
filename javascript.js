@@ -1,4 +1,4 @@
-angular.module('Clubs')
+angular.module('PortalApp')
 
 .controller('widgetCtrl', ['$scope', '$http', '$q', function ($scope, $http, $q) {
 
