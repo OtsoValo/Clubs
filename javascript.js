@@ -49,12 +49,13 @@ angular.module('PortalApp')
     };
 
     // DETAILS VIEW EXAMPLE
-    $scope.showView2 = function () {
-        $scope.portalHelpers.showView('view2.html', 2);
+    $scope.showView = function (item) {
+      	$scope.item = item;
+        $scope.portalHelpers.showView('details.html', 2);
     }
-
-    $scope.showView3 = function () {
-        $scope.portalHelpers.showView('view3.html', 3);
+    
+    $scope.showSearchView = function () {
+    	$scope.portalHelpers.showView('searchView.html', 4);
     }
 
     // PORTAL DATA SOURCE EXAMPLE
