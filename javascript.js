@@ -48,6 +48,18 @@ angular.module('PortalApp')
         }
     };
 
+  
+      // Search for a club name
+    $scope.insertData = function () {
+        if ($scope.insertValue.value.length > 50)
+            alert('value should be less than 50 characters');
+        else {
+            $scope.portalHelpers.invokeServerFunction('search', { value: $scope.insertValue.value }).then(function (result) {
+                $scope.dbData = result;
+            });
+        }
+    };
+  
     // DETAILS VIEW EXAMPLE
     $scope.showView2 = function () {
         $scope.portalHelpers.showView('view2.html', 2);
