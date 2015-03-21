@@ -69,6 +69,11 @@ angular.module('PortalApp')
        $scope.portalHelpers.showView('searchView.html', 4);
      }
 
+    $scope.showSignUp = function (name) {
+        $scope.name = name;
+        $scope.portalHelpers.showView('signup.html', 2);
+    }
+    
     // PORTAL DATA SOURCE EXAMPLE
 
     // Get data for the widget
