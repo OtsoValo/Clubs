@@ -69,21 +69,20 @@ angular.module('PortalApp')
 
     $scope.myClubs = function () {
        $scope.getDbData();
-       $scope.portalHelpers.showView('myClubs.html', 3);
+       $scope.portalHelpers.showView('myClubs.html', 2);
      }
     
     $scope.showSearchView = function () {
-       $scope.portalHelpers.showView('main.html', 4);
+       $scope.portalHelpers.showView('main.html', 2);
      }
 
     $scope.showSignUp = function (name) {
         $scope.name = name;
-        $scope.portalHelpers.showView('signup.html', 5);
+        $scope.portalHelpers.showView('signup.html', 2);
     }
 
-     $scope.showCreateClubView = function (name) {
-        $scope.name = name;
-        $scope.portalHelpers.showView('createClub.html', 6);
+     $scope.showCreateClubView = function () {
+        $scope.portalHelpers.showView('createClub.html', 2);
     }
     
     // Get data for the widget
