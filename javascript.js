@@ -46,9 +46,6 @@ angular.module('PortalApp')
             $scope.searchdbData = result;
         });
     }
-    
-    // Try to get test data from the database
-    $scope.getDbData();
   
     // Try to get search data from the database
     $scope.getsearchDbData();
@@ -70,18 +67,23 @@ angular.module('PortalApp')
         $scope.portalHelpers.showView('details.html', 2);
      }
 
+    $scope.myClubs = function () {
+       $scope.getDbData();
+       $scope.portalHelpers.showView('myClubs.html', 3);
+     }
+    
     $scope.showSearchView = function () {
-       $scope.portalHelpers.showView('searchView.html', 4);
+       $scope.portalHelpers.showView('main.html', 4);
      }
 
     $scope.showSignUp = function (name) {
         $scope.name = name;
-        $scope.portalHelpers.showView('signup.html', 2);
+        $scope.portalHelpers.showView('signup.html', 5);
     }
 
      $scope.showCreateClubView = function (name) {
         $scope.name = name;
-        $scope.portalHelpers.showView('createClub.html', 2);
+        $scope.portalHelpers.showView('createClub.html', 6);
     }
     
     // Get data for the widget
