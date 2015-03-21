@@ -25,7 +25,7 @@ angular.module('PortalApp')
     }
 	
   		// Insert a new Club into the database
-    		$scope.insertClubData = function () {
+    $scope.insertClubData = function () {
         if ($scope.insertClub.name.length > 50)
             alert('value should be less than 50 characters');
         else {
