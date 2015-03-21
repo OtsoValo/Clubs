@@ -9,9 +9,8 @@ angular.module('PortalApp')
         "title": "Clubs Widget",
         "icon": "icon-bell"
     };
-
-    // Initialize input variable
-    $scope.insertValue = { value: "" };
+  
+  	$scope.insertClub = { name: "", description: "", calendarLink: "" };
 
     // Show loading message in the first column
     $scope.portalHelpers.showView('loading.html', 1);
@@ -19,31 +18,21 @@ angular.module('PortalApp')
     // Show loading animation
     $scope.portalHelpers.toggleLoading(true);
 
-    // DATABASE EXAMPLE
-
-    $scope.getDbData = function () {
-        $scope.portalHelpers.invokeServerFunction('getData').then(function (result) {
-            $scope.dbData = result;
+    $scope.getNewClubData = function () {
+        $scope.portalHelpers.invokeServerFunction('getCreatedClubData').then(function (result) {
+            $scope.createdClubData = result;
         });
     }
 
-    // Try to get test data from the database
-    $scope.getDbData();
-
-    // Create table
-    $scope.createTable = function () {
-        $scope.portalHelpers.invokeServerFunction('createTable').then(function (result) {
-            $scope.getDbData();
-        });
-    }
-
-    // Insert a value into the database
-    $scope.insertData = function () {
-        if ($scope.insertValue.value.length > 50)
+  	// Insert a new Club into the database
+    $scope.insertClubData = function () {
+      //	console.log($scope.insertClub.name);
+        if ($scope.insertClub.name.length > 50)
             alert('value should be less than 50 characters');
         else {
-            $scope.portalHelpers.invokeServerFunction('insert', { value: $scope.insertValue.value }).then(function (result) {
-                $scope.dbData = result;
+            $scope.portalHelpers.invokeServerFunction('insertClub', { name: $scope.insertClub.name, description: $scope.insertClub.description, calendarLink: $scope.insertClub.calendarLink }).then(function (result) {
+              	console.log("result" + result);
+                $scope.createdClubData = result;
             });
         }
     };
