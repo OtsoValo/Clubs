@@ -36,6 +36,17 @@ function insert() {
     }
 }
 
+// Search the database
+function search() {
+    if (args.Get("value").length > 50)
+        return '{"result":"error"}';
+    else {
+        db.Execute('SELECT * FROM CLUBS WHERE NAME LIKE %@value%');
+        return getData();
+    }
+}
+
+
 // OPEN DATA API EXAMPLE
 
 function getOpenData() {
