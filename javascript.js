@@ -25,13 +25,15 @@ angular.module('PortalApp')
     }
 	
   		// Insert a new Club into the database
-    	$scope.insertClubData = function () {
+    		$scope.insertClubData = function () {
         if ($scope.insertClub.name.length > 50)
             alert('value should be less than 50 characters');
         else {
             $scope.portalHelpers.invokeServerFunction('insertClub', { name: $scope.insertClub.name, description: $scope.insertClub.description, calendarLink: $scope.insertClub.calendarLink }).then(function (result) {
                 $scope.createdClubData = result;
-    // DATABASE EXAMPLE
+            });
+        }
+    };
 
     $scope.getDbData = function () {
         $scope.portalHelpers.invokeServerFunction('getData').then(function (result) {
