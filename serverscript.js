@@ -2,46 +2,12 @@
 
 // Retreive data from the database
 function getData() {
-    var queryResult = db.Execute('SELECT * FROM sampleTable');
+  	var userId = Portal.Get("currentUser");
+  
+    var queryResult = db.Execute("SELECT NAME, DESCRIPTION, CAL_LINK FROM CLUBS c INNER JOIN CLUB_MEMBERS m ON c.CLUB_ID = m.CLUB_ID WHERE m.MEMBER_ID = '"  + userId + "'");
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
-        return '{"error":"Table does not exist"}';
+        return '{"error":"You do not belong in any clubs"}';
     }
     return queryResult;
-}
-
-// Create talbe
-function createTable() {
-    var debug = {};
-
-    var queryResult = db.Execute('SELECT TOP 1 * FROM sampleTable');
-    var row = JSON.parse(queryResult);
-
-    if (row.length > 0 && typeof row[0].Error != 'undefined') {
-        db.Execute('CREATE TABLE sampleTable(id INTEGER PRIMARY KEY IDENTITY(1,1), userId nvarchar(50), value nvarchar(50));');
-        debug.result = "created table!";
-    } else
-        debug.result = "table already exists";
-
-    return JSON.stringify(debug);
-}
-
-// Insert into the database
-function insert() {
-    if (args.Get("value").length > 50)
-        return '{"result":"error"}';
-    else {
-        db.Execute('INSERT INTO sampleTable VALUES(@currentUser,@value)');
-        return getData();
-    }
-}
-
-// OPEN DATA API EXAMPLE
-
-function getOpenData() {
-    var apiKey = ""; // Paste your API key here.
-    if (apiKey == "")
-        return '{"error":"No Api Key! Add your key in the server script file."}';
-
-    return proxy.GetProxy('https://api.uwaterloo.ca/v2/foodservices/watcard.json?key=' + apiKey);
 }
