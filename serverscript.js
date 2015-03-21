@@ -10,6 +10,16 @@ function getData() {
     return queryResult;
 }
 
+// Retreive search data from the database
+function getSearchData() {
+    var queryResult = db.Execute('SELECT NAME, DESCRIPTION FROM CLUBS');
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"error":"Table does not exist"}';
+    }
+    return queryResult;
+}
+
 // Create talbe
 function createTable() {
     var debug = {};
@@ -35,6 +45,18 @@ function insert() {
         return getData();
     }
 }
+
+// Search the database
+function search() {
+    if (args.Get("value").length > 50)
+        return '{"result":"error"}';
+    else {
+        //return db.execute('SELECT * FROM CLUBS WHERE NAME LIKE \'%' + args.Get("value") + '%\'');
+      var query =  'SELECT * FROM CLUBS WHERE NAME LIKE \'%' + args.Get("value") + '%\'';
+      return db.Execute(query);
+    }
+}
+
 
 // OPEN DATA API EXAMPLE
 
