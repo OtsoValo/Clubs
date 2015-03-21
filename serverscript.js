@@ -36,6 +36,16 @@ function insert() {
     }
 }
 
+// Insert a new club into the database
+function insertClub() {
+    if (args.Get("value").length > 50)
+        return '{"result":"error"}';
+    else {
+        db.Execute('INSERT INTO CLUBS (CLUB_ID, NAME, DESCRIPTION) VALUES (1, 'Fake Badminton Club', 'A club for all the lovers of fake badminton!')');
+        return getData();
+    }
+}
+
 // OPEN DATA API EXAMPLE
 
 function getOpenData() {
