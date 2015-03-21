@@ -30,9 +30,11 @@
         </div>
           
       <div widget-item ng-repeat="item in searchdbData">
-            <div widget-text>Name: {{item.NAME}}</div>
-            <div widget-text>Description: {{item.DESCRIPTION}}</div>
-        </div>
+          <div widget-item icon-right="icon-angle-right" ng-click="showSignUp(item.NAME)" button>
+              <div widget-section-header>{{item.NAME}}</div>
+              <div widget-text>{{item.DESCRIPTION}}</div>
+          </div>
+      </div>
     </div>
   
     <!-- DETAILS VIEWS EXAMPLE -->
@@ -85,5 +87,13 @@
     <div widget-section-header>View 3</div>
     <div widget-item>
         <div widget-text>This view is displayed in column 3</div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="signup.html">
+    <div widget-section-header>{{name}}</div>
+    <div widget-item>
+        <div widget-text>Do you want to sign up?</div>
+      <button class="btn btn-primary" type="submit" style="margin-top: -1px;">Sign Up! </button>
     </div>
 </script>
