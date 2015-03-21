@@ -27,8 +27,17 @@ angular.module('PortalApp')
         });
     }
 
+        $scope.getsearchDbData = function () {
+        $scope.portalHelpers.invokeServerFunction('getSearchData').then(function (result) {
+            $scope.searchdbData = result;
+        });
+    }
+    
     // Try to get test data from the database
     $scope.getDbData();
+  
+    // Try to get search data from the database
+    $scope.getsearchDbData();
 
     // Create table
     $scope.createTable = function () {
@@ -36,7 +45,7 @@ angular.module('PortalApp')
             $scope.getDbData();
         });
     }
-
+/*
     // Insert a value into the database
     $scope.insertData = function () {
         if ($scope.insertValue.value.length > 50)
@@ -47,15 +56,17 @@ angular.module('PortalApp')
             });
         }
     };
-
+*/
   
       // Search for a club name
-    $scope.insertData = function () {
+    $scope.searchData = function () {
         if ($scope.insertValue.value.length > 50)
             alert('value should be less than 50 characters');
         else {
             $scope.portalHelpers.invokeServerFunction('search', { value: $scope.insertValue.value }).then(function (result) {
-                $scope.dbData = result;
+                $scope.searchdbData = result;
+              console.log("result is");
+              console.log(result);
             });
         }
     };
