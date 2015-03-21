@@ -9,15 +9,16 @@
 <script type="text/ng-template" id="main.html">
 
     <!-- DATABASE EXAMPLE -->
-    <div widget-section-header>Database test</div>
+
+    <div widget-section-header>Search test</div>
     <div ng-if="dbData.error">
         <div widget-item>
-            <div widget-text>{{dbData.error}}, <a ng-click="createTable()">create table</a>.</div>
+            <div widget-text>The table does not exist, <a ng-click="loadClubs()">load clubs</a>.</div>
         </div>
     </div>
     <div ng-if="!dbData.error">
         <div widget-item>
-            <form class="form-inline" ng-submit="insertData()">
+            <form class="form-inline" ng-submit="searchData()">
                 <div class="input-group" style="width: 100%;">
                     <input type="text" class="form-control" ng-model="insertValue.value" placeholder="Enter some text and submit" />
                     <span class="input-group-btn" style="overflow:hidden;">
@@ -27,13 +28,13 @@
                 </div>
             </form>
         </div>
-
-        <div widget-item ng-repeat="item in dbData">
-            <div widget-text>Id: {{item.id}}</div>
-            <div widget-text>UserId: {{item.userId}}</div>
-            <div widget-text>Value: {{item.value}}</div>
+          
+      <div widget-item ng-repeat="item in searchdbData">
+            <div widget-text>Name: {{item.NAME}}</div>
+            <div widget-text>Description: {{item.DESCRIPTION}}</div>
         </div>
     </div>
+  
     <!-- DETAILS VIEWS EXAMPLE -->
 
     <div widget-section-header>Details View Example</div>
